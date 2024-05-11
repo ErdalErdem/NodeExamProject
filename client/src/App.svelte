@@ -10,6 +10,7 @@
   import RateLimitExceeded from './pages/RateLimit/RateLimit.svelte';
     import User from './pages/User/User.svelte';
     import Contact from './pages/Contact/Contact.svelte';
+    import Chat from './pages/Chat/Chat.svelte';
 
   onMount(async () => {
       await checkSession();
@@ -31,6 +32,12 @@
     <Route path="/Contact">
       <PrivateRouteGuard>
         <Contact />
+      </PrivateRouteGuard>
+    </Route>
+
+    <Route path="/Chat">
+      <PrivateRouteGuard>
+        <Chat />
       </PrivateRouteGuard>
     </Route>
     

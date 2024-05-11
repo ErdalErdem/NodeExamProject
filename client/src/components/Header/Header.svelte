@@ -7,6 +7,8 @@
         <button on:click={() => navigateTo('User')}>User</button>
         <button on:click={() => navigateTo('Next Release')}>Next Release</button>
         <button on:click={() => navigateTo('Contact')}>Contact</button>
+        <button on:click={() => navigateTo('Chat')}>Chat</button>
+
       </ul>
     </nav>
   </header>
