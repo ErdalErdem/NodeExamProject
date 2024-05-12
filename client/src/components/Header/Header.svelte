@@ -1,46 +1,71 @@
 
 <header>
-    <nav class="navbar">
-
-      <ul class="nav-links">
-        <button on:click={() => navigateTo('')}>Home</button>
-        <button on:click={() => navigateTo('User')}>User</button>
-        <button on:click={() => navigateTo('Next Release')}>Next Release</button>
-        <button on:click={() => navigateTo('Contact')}>Contact</button>
-        <button on:click={() => navigateTo('Chat')}>Chat</button>
-
-      </ul>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <div class="logo">
+      <button on:click={() => navigateTo('')}>
+        <img src="/public/icon.png" alt="Logo" style="height: 50px; vertical-align: middle;">
+        <!-- Optional: include text if you want a text logo -->
+      </button>
+          </div>
+    <ul class="nav-links">
+      <li><button on:click={() => navigateTo('')}>Home</button></li>
+      <li><button on:click={() => navigateTo('User')}>User</button></li>
+      <li><button on:click={() => navigateTo('Next Release')}>Next Release</button></li>
+      <li><button on:click={() => navigateTo('Contact')}>Contact</button></li>
+      <li><button on:click={() => navigateTo('Chat')}>Chat</button></li>
+    </ul>
+  </nav>
+</header>
   
   <style>
-    header {
-      background: url('/header-bg.jpg') no-repeat center center / cover;
-      padding: 1rem 2rem;
-      color: white;
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  header {
+    background: url('/header-bg.jpg') no-repeat center center / cover;
+    padding: 1rem 2rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    button {
-    background: linear-gradient(45deg, #6a3093, #a044ff);
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+  }
+
+  .nav-links li button {
+    background: transparent;
     color: white;
     padding: 10px 20px;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 5px;
     font-size: 16px;
+    transition: all 0.3s ease;
     cursor: pointer;
-}
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
-  button:hover {
-    background: linear-gradient(45deg, #7b1fa2, #ae52d4);
-}
+  .nav-links li button:hover {
+    background: white;
+    color: #6a3093;
+    border-color: white;
+  }
 
-
-  </style>
+</style>
 
 <script>
   import { navigate } from "svelte-routing";

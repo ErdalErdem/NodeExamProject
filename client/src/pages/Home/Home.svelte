@@ -60,81 +60,77 @@
         {/if}
         
     </div>
+    
 </main>
 
 <!-- Future stylling comming in newer releases -->
 
 <style>
-    .auth-form {
-        max-width: 400px;
-        margin: 20px auto;
-        padding: 50px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 20px;
-        background-color: #ffffff;
-        color: #000;
-    }
-
-    .form-control {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    input[type="email"], input[type="password"], input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc; /* Updated to be visible */
-    border-radius: 4px;
-    box-sizing: border-box; /* Ensures padding does not add to width */
+   
+  .auth-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: #171717; /* Dark theme to match the header */
+    color: white; /* Text color */
+    
 }
 
-    .submit-button, .button-group button {
-        width: 100%;
-        padding: 10px 20px;
-        border: none;
-        color: rgb(255, 255, 255);
-        background-color: #6a3093;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s;
-        
-    }
-
-    .submit-button:hover, .button-group button:hover {
-        background-color: #a044ff;
-    }
-
-    .button-group {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .button-group button {
-        background-color: #2b01ff; /* Green for create account button */
-    }
-
-    .button-group button:hover {
-        background-color: #4238ff;
-    }
-
-    label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333; /* Enhanced visibility */
-}
-
-/* Container for all form elements */
 .form-control {
     margin-bottom: 15px;
 }
+
+.form-control label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ccc; /* Lighter color for labels to stand out less */
+}
+
+.form-control input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #333; /* Subtle border */
+    border-radius: 4px;
+    background: #292929; /* Slightly lighter background for inputs */
+    color: white; /* Text color for input */
+    box-sizing: border-box;
+}
+
+.submit-button, .button-group button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    background-color: #6a3093; /* Purple background */
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submit-button:hover, .button-group button:hover {
+    background-color: #a044ff; /* Lighter purple on hover */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    background-color: #2b01ff; /* Distinct color for button group */
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+.button-group button:hover {
+    background-color: #4238ff; /* Hover effect for button group */
+}
+
+
 </style>
 
 <script>
