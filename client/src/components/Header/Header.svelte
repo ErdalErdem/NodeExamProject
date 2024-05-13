@@ -2,17 +2,19 @@
 <header>
   <nav class="navbar">
     <div class="logo">
-      <button on:click={() => navigateTo('')}>
+      <button on:click={() => navigateTo('Home')}>
         <img src="/public/icon.png" alt="Logo" style="height: 50px; vertical-align: middle;">
         <!-- Optional: include text if you want a text logo -->
       </button>
           </div>
     <ul class="nav-links">
-      <li><button on:click={() => navigateTo('')}>Home</button></li>
+      <li><button on:click={() => navigateTo('Home')}>Home</button></li>
       <li><button on:click={() => navigateTo('User')}>User</button></li>
-      <li><button on:click={() => navigateTo('Next Release')}>Next Release</button></li>
-      <li><button on:click={() => navigateTo('Contact')}>Contact</button></li>
       <li><button on:click={() => navigateTo('Chat')}>Chat</button></li>
+            <li><button on:click={() => navigateTo('Contact')}>Contact</button></li>
+
+
+
     </ul>
   </nav>
 </header>
@@ -68,6 +70,8 @@
 </style>
 
 <script>
+ 
+  
   import { navigate } from "svelte-routing";
 
   async function navigateTo(route) {
@@ -83,4 +87,5 @@
       console.error('Navigation error:', error);
     }
   }
+
 </script>

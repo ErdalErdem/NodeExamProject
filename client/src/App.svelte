@@ -11,6 +11,7 @@
     import User from './pages/User/User.svelte';
     import Contact from './pages/Contact/Contact.svelte';
     import Chat from './pages/Chat/Chat.svelte';
+    import Login from './pages/Login/Login.svelte';
 
   onMount(async () => {
       await checkSession();
@@ -23,7 +24,14 @@
 <main>
   <Header />
   <Router>
-    <Route path="/" component={Home} />
+    <Route path="/" component={Login} />
+
+    <Route path="/Home">
+      <PrivateRouteGuard>
+        <Home />
+      </PrivateRouteGuard>
+    </Route>
+
     <Route path="/User">
       <PrivateRouteGuard>
         <User />

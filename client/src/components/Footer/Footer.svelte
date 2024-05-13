@@ -1,6 +1,6 @@
 <footer>
     <div class="footer-content">
-      <p>© 2024 Mandatory2</p>
+      <p>© 2024 JustChatting</p>
       <div class="social-links">
         <a href="https://github.com" target="_blank">Github</a>
         <a href="https://twitter.com" target="_blank">Twitter</a>
