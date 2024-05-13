@@ -1,5 +1,3 @@
-
-
 <main>
     <div class="auth-container">
         
@@ -18,6 +16,8 @@
         </script>
         
         <form on:submit|preventDefault={handlePostLogin} class="auth-form">
+
+<h2>Login</h2>
             <div class="form-control">
                 <label for="email">Email:</label>
                 <input type="email" bind:value={email} id="email" required />
@@ -67,6 +67,10 @@
 
 <style>
    
+h2 {
+text-align: center;
+
+}
   .auth-form {
     max-width: 400px;
     margin: 20px auto;
@@ -103,7 +107,7 @@
     width: 100%;
     padding: 10px 20px;
     border: none;
-    background-color: #6a3093; /* Purple background */
+    background-color: #ffa811; /* Purple background */
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
@@ -112,7 +116,7 @@
 }
 
 .submit-button:hover, .button-group button:hover {
-    background-color: #a044ff; /* Lighter purple on hover */
+    background-color: #e69200; /* Lighter purple on hover */
 }
 
 .button-group {
@@ -121,7 +125,7 @@
 }
 
 .button-group button {
-    background-color: #2b01ff; /* Distinct color for button group */
+    background-color: #0270ff; /* Distinct color for button group */
     flex-grow: 1;
     margin-left: 5px;
 }
