@@ -10,7 +10,6 @@
   import RateLimitExceeded from './pages/RateLimit/RateLimit.svelte';
     import User from './pages/User/User.svelte';
     import Contact from './pages/Contact/Contact.svelte';
-    import Chat from './pages/Chat/Chat.svelte';
     import Login from './pages/Login/Login.svelte';
 
   onMount(async () => {
@@ -18,7 +17,6 @@
   });
 
 </script>
-
 
 
 <main>
@@ -43,12 +41,8 @@
       </PrivateRouteGuard>
     </Route>
 
-    <Route path="/Chat">
-      <PrivateRouteGuard>
-        <Chat />
-      </PrivateRouteGuard>
-    </Route>
-    
+  
+  
     <Route path="/Unauthorized" component={Unauthorized} />
 
     <Route path="/RateLimitExceeded" component={RateLimitExceeded} />

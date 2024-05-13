@@ -10,7 +10,6 @@
     <ul class="nav-links">
       <li><button on:click={() => navigateTo('Home')}>Home</button></li>
       <li><button on:click={() => navigateTo('User')}>User</button></li>
-      <li><button on:click={() => navigateTo('Chat')}>Chat</button></li>
             <li><button on:click={() => navigateTo('Contact')}>Contact</button></li>
 
 
@@ -18,8 +17,9 @@
     </ul>
   </nav>
 </header>
-  
   <style>
+
+    
   header {
     background: url('/header-bg.jpg') no-repeat center center / cover;
     padding: 1rem 2rem;
