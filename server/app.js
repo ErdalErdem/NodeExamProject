@@ -3,9 +3,19 @@ import session from 'express-session';
 import 'dotenv/config';
 import { rateLimit } from 'express-rate-limit';
 import helmet from 'helmet';
-import cors from "cors";
+import cors from 'cors';
+import http from 'http';
+import { Server } from 'socket.io';
+import { sequelize, User } from './database/db.js';
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 app.use(cors({
     credentials: true,
@@ -23,10 +33,7 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-
-
 const authRateLimiter = rateLimit({
-
     windowMs: 10 * 60 * 1000, // 10min
     limit: 10,
     message: "Too many attempts, please try again later",
@@ -56,7 +63,36 @@ app.use(sessionRouter);
 import authRouter from './routers/authRouter.js';
 app.use(authRouter);
 
+// Store active users
+let activeUsers = {};
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('register user', async (userId) => {
+    try {
+      const user = await User.findByPk(userId);
+      if (user) {
+        activeUsers[socket.id] = user.username;
+        io.emit('active users', Object.values(activeUsers));
+      }
+    } catch (err) {
+      console.error('Error fetching user:', err);
+    }
+  });
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', () => {
+    delete activeUsers[socket.id];
+    io.emit('active users', Object.values(activeUsers));
+    console.log('user disconnected');
+  });
+});
+
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

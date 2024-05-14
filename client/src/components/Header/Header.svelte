@@ -14,6 +14,7 @@
 
 
 
+
     </ul>
   </nav>
 </header>
@@ -70,7 +71,6 @@
 
 <script>
  
-  
   import { navigate } from "svelte-routing";
 
   async function navigateTo(route) {
@@ -86,5 +86,6 @@
       console.error('Navigation error:', error);
     }
   }
+
 
 </script>

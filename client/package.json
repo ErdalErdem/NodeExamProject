@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "flowbite-svelte": "^0.46.1",
+    "socket.io-client": "^4.7.5",
     "svelte-french-toast": "^1.2.0"
   }
 }

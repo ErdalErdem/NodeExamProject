@@ -54,6 +54,7 @@ async function postLogout() {
       },
     );
   }
+
 </script>
 
 <style>
