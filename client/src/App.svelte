@@ -23,6 +23,7 @@
 <main>
   <Header />
   <Router>
+
     <Route path="/" component={Login} />
 
     <Route path="/Home">

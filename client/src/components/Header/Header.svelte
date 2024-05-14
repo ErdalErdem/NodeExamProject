@@ -2,7 +2,7 @@
 <header>
   <nav class="navbar">
     <div class="logo">
-      <button on:click={() => navigateTo('Home')}>
+      <button on:click={() => navigateTo('User')}>
         <img src="/public/icon.png" alt="Logo" style="height: 50px; vertical-align: middle;">
       </button>
           </div>

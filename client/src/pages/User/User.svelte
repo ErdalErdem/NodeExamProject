@@ -1,28 +1,26 @@
 <main>
+  <Toaster />
 
-    <div>
-        <h1>Welcome {username || "Not Available"}</h1>
-        <button on:click={handlePostLogoutWithToasts} class="logout">Logout</button>
-      </div>
-
-      <div class="card">
+  <div class="card">
     <p>Thank you for visiting our application. Feel free to explore our features and learn more about what we offer.</p>
   </div>
 
+    <h1>Welcome {username || "Not Available"}</h1>
+
+    <div class="Logout-button">
+    <button on:click={handlePostLogoutWithToasts} class="logout">Logout</button>
+  </div>
 </main>
 
-
-
 <script>
-
   import { navigate } from "svelte-routing";
   import toast, { Toaster } from "svelte-french-toast";
   import { user } from "../../stores/user.js";
-  
+
   let userid = $user.user.id;
   let username = $user.user.name;
 
-async function postLogout() {
+  async function postLogout() {
     const response = await fetch("http://localhost:8080/auth/logout", {
       method: "GET",
       credentials: "include",
@@ -45,42 +43,54 @@ async function postLogout() {
       postLogout(),
       {
         loading: "Logging out",
-        success: "Logged out ",
+        success: "Logged out",
         error: "Failed to logout - please try again",
       },
       {
         duration: 1500,
         position: "top-center",
-      },
+      }
     );
   }
-
 </script>
 
 <style>
-  
+  h1 {
+    text-align: center;
+  }
 
-h1 {
-  text-align: center;
-}
-
-/* Assuming the parent container has at least position: relative */
-.card {
+  .card {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Correctly centers the element */
+    transform: translate(-50%, -50%);
     width: 190px;
     height: 254px;
     border-radius: 30px;
     background: #212121;
-    box-shadow: 15px 15px 30px rgb(25, 25, 25),
-                -15px -15px 30px rgb(60, 60, 60);
-}
+    box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
+    text-align: center;
+  }
 
+  .Logout-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 370px; /* Adjust this value based on the height of the card and spacing needed */
+  }
 
+  .logout {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-
+  .logout:hover {
+    background-color: #c00;
+  }
 </style>
-
-<!-- Future stylling comming in newer releases -->
