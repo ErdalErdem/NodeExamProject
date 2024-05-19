@@ -22,6 +22,7 @@
       <button on:click={() => navigateTo('User')}>
         <img src="/public/icon.png" alt="Logo">
       </button>
+      <div class="site-name">JustChatting</div>
     </div>
     <ul class="nav-links">
       <li><button on:click={() => navigateTo('User')}>User</button></li>
@@ -52,6 +53,7 @@
     position: relative;
     z-index: 10;
     transition: background 0.3s ease-in-out;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .navbar {
@@ -59,6 +61,11 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
   }
 
   .logo button {
@@ -79,6 +86,13 @@
   .logo button:hover img {
     transform: scale(1.1);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+
+  .site-name {
+    font-size: 1.8rem;
+    color: white;
+    margin-left: 0.5rem;
+    animation: float 3s ease-in-out infinite;
   }
 
   .nav-links {

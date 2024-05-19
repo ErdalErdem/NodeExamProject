@@ -150,7 +150,7 @@
   .logout {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #ffa811;
+    background-color: #ff1111;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -159,6 +159,6 @@
   }
 
   .logout:hover {
-    background-color: #e69200;
+    background-color: #b10000;
   }
 </style>
