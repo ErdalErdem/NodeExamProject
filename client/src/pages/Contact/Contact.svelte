@@ -1,190 +1,207 @@
 <script>
-    
-    import { navigate } from "svelte-routing";
+    import { onMount } from 'svelte';
     import toast, { Toaster } from "svelte-french-toast";
+    import { navigate } from "svelte-routing";
     import { BASE_URL } from "../../stores/url.js";
-    import  sanitizeHTML from "../../util/sanitize.js";
+    import sanitizeHTML from "../../util/sanitize.js";
     import sanitizeEmail from "../../util/sanitize.js";
-
+  
     let email = "erda0028@stud.kea.dk";
     let subject;
     let message;
-
+  
     async function postEmail() {
-        const sanitizedEmail = sanitizeEmail(email);
-        const sanitizedSubject = sanitizeHTML(subject);
-        const sanitizedMessage = sanitizeHTML(message);
-        const response = await fetch($BASE_URL + "/api/mails", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                to: sanitizedEmail,
-                subject: sanitizedSubject,
-                message: sanitizedMessage,
-            }),
-        });
-        if (response.ok) {
-            try {
-                const data = await response.json();
-                console.log("Email sent successfully: ", data);
-                setTimeout(() => {
-                    location.reload();
-                }, 2000);
-            } catch (e) {
-                console.error("Error sending email: ", e);
-            }
-        } else if (response.status === 429) {
-            navigate("/RateLimitExceeded");
-        } else {
-            console.error("Failed to send email: ", await response.text());
+      const sanitizedEmail = sanitizeEmail(email);
+      const sanitizedSubject = sanitizeHTML(subject);
+      const sanitizedMessage = sanitizeHTML(message);
+      const response = await fetch(`${BASE_URL}/api/mails`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: sanitizedEmail,
+          subject: sanitizedSubject,
+          message: sanitizedMessage,
+        }),
+      });
+      if (response.ok) {
+        try {
+          const data = await response.json();
+          console.log("Email sent successfully: ", data);
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
+        } catch (e) {
+          console.error("Error sending email: ", e);
         }
+      } else if (response.status === 429) {
+        navigate("/RateLimitExceeded");
+      } else {
+        console.error("Failed to send email: ", await response.text());
+      }
     }
-
+  
     async function handlePostEmail() {
-        await toast.promise(
-            postEmail(),
-            {
-                loading: "Sending email...",
-                success: "Email sent successfully",
-                error: "Failed to send email - please try again",
-            },
-            {
-                duration: 1500,
-                position: "top-center",
-            },
-        );
+      await toast.promise(
+        postEmail(),
+        {
+          loading: "Sending email...",
+          success: "Email sent successfully",
+          error: "Failed to send email - please try again",
+        },
+        {
+          duration: 1500,
+          position: "top-center",
+        },
+      );
     }
-</script>
-
-<Toaster />
-
-<main>
+  </script>
+  
+  <Toaster />
+  
+  <main>
     <div class="container">
-        <form on:submit|preventDefault={handlePostEmail} class="form">
-            <h2>Send Email</h2>
-
-            <label for="email">Email:</label>
-            <input
-                id="email"
-                type="email"
-                bind:value={email}
-                placeholder="Enter recipient's email"
-                required
-                readonly
-            />
-
-            <label for="subject">Subject:</label>
-            <input
-                id="subject"
-                type="text"
-                bind:value={subject}
-                placeholder="Subject"
-                required
-            />
-
-            <label for="message">Message:</label>
-            <textarea
-                id="message"
-                bind:value={message}
-                placeholder=" Message"
-                required
-            ></textarea>
-
-            <button type="submit" class="submit-button">Send Email</button>
-        </form>
+      <form on:submit|preventDefault={handlePostEmail} class="form">
+        <h2>Send Email</h2>
+  
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          bind:value={email}
+          placeholder="Enter recipient's email"
+          required
+          readonly
+        />
+  
+        <label for="subject">Subject:</label>
+        <input
+          id="subject"
+          type="text"
+          bind:value={subject}
+          placeholder="Subject"
+          required
+        />
+  
+        <label for="message">Message:</label>
+        <textarea
+          id="message"
+          bind:value={message}
+          placeholder="Message"
+          required
+        ></textarea>
+  
+        <button type="submit" class="submit-button">Send Email</button>
+      </form>
     </div>
-</main>
+  </main>
+  
+  <style>
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+  
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.5s ease-out;
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 12rem;
 
-<style>
-   /* Main layout settings */
-main {
-    background-color: #f7f7f7;  /* Lighter background for better contrast */
-    width: 100%;
-    padding: 50px;  /* Uniform padding */
-    box-sizing: border-box;  /* Include padding and border in the element's width */
-    margin: 0 auto;  /* Center main horizontally */
-    min-height: 100vh;  /* Full viewport height */
-    border-radius: 50px;
-
-}
-
-/* Centered title with more appealing color */
-h2 {
-    text-align: center;
-    color: #333;  /* Darker grey for better readability */
-    margin-top: 0;
-    padding-top: 20px;
-}
-
-/* Container for form and content within it */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    background: #ffffff;  /* Pure white for a clean look */
-    border-radius: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Softer shadow */
-    max-width: 400px;
-    margin: 20px auto;
-    border: 1px solid #ddd;  /* Subtle border */
-}
-
-/* Styling for form elements */
-.form {
-    display: flex;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;  /* More modern font */
-    color: #333;  /* Dark grey text for better readability */
-    flex-direction: column;
-    width: 100%;
-}
-
-.form label {
-    margin-bottom: 8px;  /* Slightly more space below labels */
-    font-size: 16px;  /* Larger text for better readability */
-    color: #555;  /* Softer color */
-    text-align: left;
-}
-
-.form input,
-.form textarea {
-    padding: 12px;  /* More padding for better touch interaction */
-    margin-bottom: 15px;
-    border: 2px solid #ccc;  /* Slightly thicker border */
-    border-radius: 4px;
-    background: #fefefe;  /* Slightly off-white background */
-    color: #333;  /* Consistent text color */
-}
-
-/* Specific styles for disabled email input */
-#email {
-    cursor: not-allowed;
-    background-color: #eee;  /* Make disabled fields clearly distinct */
-}
-
-/* Textarea specific styles */
-.form textarea {
-    height: 100px;  /* More space for text */
-    font-family: inherit;  /* Ensure consistent font in all form elements */
-}
-
-/* Submit button with more modern styling */
-.submit-button {
-    background-color: #007bff;  /* Bootstrap primary blue */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;  /* Make button text stand out */
-}
-
-.submit-button:hover {
-    background-color: #0056b3;  /* Darker blue on hover for a subtle effect */
-}
-
-</style>
+    }
+  
+    h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+  
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+  
+    .form label {
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #ccc;
+    }
+  
+    .form input,
+    .form textarea {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+  
+    .form input:focus,
+    .form textarea:focus {
+      outline: none;
+      border: 2px solid #a044ff;
+    }
+  
+    #email {
+      cursor: not-allowed;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  
+    .form textarea {
+      height: 100px;
+      resize: none;
+    }
+  
+    .submit-button {
+      background-color: #a044ff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+  
+    .submit-button:hover {
+      background-color: #8f1eff;
+    }
+  </style>
+  
