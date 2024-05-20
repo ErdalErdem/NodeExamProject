@@ -68,7 +68,7 @@
   <Toaster />
 
   <div class="user-container">
-    <h1>Welcome, {username || "Not Available"}</h1>
+    <h1>Hi, {username || "Not Available"}</h1>
     <div class="info-box">
       <p><strong>Last Logged In:</strong> {lastLogin}</p>
       <p><strong>Quote of the Day:</strong> "{quote}"</p>
