@@ -25,8 +25,8 @@
       <div class="site-name">JustChatting</div>
     </div>
     <ul class="nav-links">
+      <li><button on:click={() => navigateTo('Home')}>Home</button></li>
       <li><button on:click={() => navigateTo('User')}>User</button></li>
-      <li><button on:click={() => navigateTo('Home')}>Next Release</button></li>
       <li><button on:click={() => navigateTo('Chat')}>Chat</button></li>
       <li><button on:click={() => navigateTo('Contact')}>Contact</button></li>
     </ul>
@@ -92,7 +92,6 @@
     font-size: 1.8rem;
     color: white;
     margin-left: 0.5rem;
-    animation: float 3s ease-in-out infinite;
   }
 
   .nav-links {

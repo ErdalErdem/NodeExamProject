@@ -3,6 +3,7 @@
     import toast, { Toaster } from "svelte-french-toast";
     import { BASE_URL } from "../../stores/url";
     import sanitizeHTML from "../../util/sanitize.js";
+    import { user } from "../../stores/user.js"; // Importing the user store
   
     let showLogin = true;
     let showRegister = false;
@@ -22,16 +23,21 @@
         }),
         credentials: "include",
       });
+  
+      const result = await response.json();
       if (response.status === 429) {
         navigate("/RateLimitExceeded");
         return;
       }
-      const result = await response.json();
+  
       if (!response.ok) {
         throw new Error(result.message || "Login failed");
       }
+  
+      // Store user data in Svelte store
+      user.set(result);
       setTimeout(() => {
-        navigate("/User");
+        navigate("/Home");
       }, 2000);
     }
   
@@ -54,7 +60,7 @@
       const sanitizedEmail = sanitizeHTML(email);
       const sanitizedPassword = sanitizeHTML(password);
       const sanitizedName = sanitizeHTML(name);
-      const response = await fetch($BASE_URL + "/api/users", {
+      const response = await fetch($BASE_URL + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -63,14 +69,18 @@
           password: sanitizedPassword,
         }),
       });
+  
+      const result = await response.json();
       if (response.status === 429) {
         navigate("/RateLimitExceeded");
         return;
       }
-      const result = await response.json();
+  
       if (!response.ok) {
         throw new Error(result.message || "Failed to register");
       }
+  
+      // Log in after registration
       handlePostLogin();
     }
   
@@ -90,10 +100,12 @@
     }
   
     function toggleRegister() {
-      showRegister = true;
-      showLogin = false;
+      showRegister = !showRegister;
+      showLogin = !showLogin;
     }
   </script>
+  
+  <Toaster />
   
   <main>
     <div class="auth-container">
@@ -130,12 +142,13 @@
             <input type="password" bind:value={password} id="password" required />
           </div>
           <button type="submit" class="submit-button">Signup</button>
+          <div class="button-group">
+            <button type="button" on:click={toggleRegister}>Back to Login</button>
+          </div>
         </form>
       {/if}
     </div>
   </main>
-  
-  <Toaster />
   
   <style>
     @keyframes float {
@@ -178,7 +191,8 @@
       animation: slideIn 0.5s ease-out;
       width: 90%;
       max-width: 400px;
-      margin-top: -20rem;
+      margin-bottom: 23rem;
+
     }
   
     h2 {
