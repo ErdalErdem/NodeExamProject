@@ -25,13 +25,9 @@ router.post('/auth/login', async (req, res) => {
                 name: userQuery.name
             };
             console.log("User with ID: " + userQuery.id + " has logged in");
-            res.json({
-                id: userQuery.id,
-                email: userQuery.email,
-                name: userQuery.name
-            });
+            res.json({ message: "Logged in successfully" });
         } else {
-            console.log("Incorrect password user ID: " + userQuery.id);
+            console.log("Incorrect passwprd user ID: " + userQuery.id);
             res.status(401).json({ message: "Incorrect password" });
         }
     } catch (error) {
@@ -44,7 +40,7 @@ router.post('/auth/login', async (req, res) => {
 router.get('/auth/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
-            console.error("Error destroying session:", err);
+            console.error("Error detroying session:", err);
             return res.status(500).json({ message: "Error, not logging out" });
         }
         res.clearCookie('sid');  // Assuming 'sid' is the session ID cookie name
