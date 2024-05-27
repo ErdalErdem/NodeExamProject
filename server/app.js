@@ -25,6 +25,8 @@ app.use(cors({
 app.use(express.static('public'));
 app.use(helmet());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -63,36 +65,25 @@ app.use(sessionRouter);
 import authRouter from './routers/authRouter.js';
 app.use(authRouter);
 
-// Store active users
-let activeUsers = {};
+// Existing middleware and routes setup...
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
-
-  socket.on('register user', async (userId) => {
-    try {
-      const user = await User.findByPk(userId);
-      if (user) {
-        activeUsers[socket.id] = user.username;
-        io.emit('active users', Object.values(activeUsers));
-      }
-    } catch (err) {
-      console.error('Error fetching user:', err);
-    }
-  });
-
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-
+  console.log('New client connected');
+  
   socket.on('disconnect', () => {
-    delete activeUsers[socket.id];
-    io.emit('active users', Object.values(activeUsers));
-    console.log('user disconnected');
+    console.log('Client disconnected');
+  });
+
+  socket.on('chatMessage', (msg) => {
+    io.emit('chatMessage', msg);
+  });
+
+  socket.on('skip', () => {
+    // Logic to handle skip
   });
 });
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

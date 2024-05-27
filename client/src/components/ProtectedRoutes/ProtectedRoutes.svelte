@@ -5,7 +5,6 @@
     import { user } from "../../stores/user.js";
     import checkSession from "../../util/checkSession.js";
    
-
     let isLoading = writable(true);
 
     onMount(async () => {

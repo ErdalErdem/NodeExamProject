@@ -1,157 +1,106 @@
 <script>
-  import { onMount } from 'svelte';
-  import io from 'socket.io-client';
-  import { user } from "../../stores/user.js"; // Import the user store
-  import { get } from 'svelte/store';
+  export let socket;
 
-  let socket;
-  let messages = [];
   let message = '';
-  let activeUsers = [];
-  let userId;
+  let messages = [];
 
-  // Subscribe to the user store
-  $: userId = get(user)?.id;
-
-  onMount(() => {
-    socket = io('http://localhost:8080');
-
-    if (userId) {
-      socket.emit('register user', userId);
-    }
-
-    socket.on('chat message', (msg) => {
+  if (socket) {
+    socket.on('chatMessage', (msg) => {
       messages = [...messages, msg];
     });
-
-    socket.on('active users', (users) => {
-      activeUsers = users;
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  });
+  }
 
   function sendMessage() {
-    if (message.trim()) {
-      socket.emit('chat message', message);
+    if (message.trim() !== '') {
+      socket.emit('chatMessage', message);
       message = '';
     }
   }
+
+  function skipUser() {
+    socket.emit('skip');
+  }
 </script>
 
+<main>
+  <h1>Real-Time Chat</h1>
+  <div class="chat-container">
+    <div class="messages">
+      {#each messages as msg}
+        <div class="message">{msg}</div>
+      {/each}
+    </div>
+    <div class="input-container">
+      <input bind:value={message} placeholder="Type a message" on:keydown={(e) => e.key === 'Enter' && sendMessage()} />
+      <button on:click={sendMessage}>Send</button>
+      <button class="skip" on:click={skipUser}>Skip</button>
+    </div>
+  </div>
+</main>
+
 <style>
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .chat {
-    max-width: 600px;
-    margin: 2rem auto;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.5s ease-out;
-    color: white;
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    background: #333;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .messages {
-    list-style-type: none;
-    padding: 0;
-    max-height: 300px;
+    flex: 1;
     overflow-y: auto;
     margin-bottom: 1rem;
+    max-height: 400px;
   }
 
   .message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: #444;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
   }
 
-  .input-group {
+  .input-container {
     display: flex;
-    margin-top: 1rem;
+    gap: 0.5rem;
   }
 
-  .input-group input {
+  input {
     flex: 1;
-    padding: 10px;
+    padding: 0.5rem;
     border: none;
-    border-radius: 10px 0 0 10px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 16px;
-    outline: none;
+    border-radius: 4px;
+    background: #555;
+    color: #fff;
   }
 
-  .input-group button {
-    padding: 10px 20px;
+  button {
+    padding: 0.5rem 1rem;
     border: none;
-    background-color: #a044ff;
-    color: white;
-    border-radius: 0 10px 10px 0;
+    border-radius: 4px;
+    background: #646cff;
+    color: #fff;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
   }
 
-  .input-group button:hover {
-    background-color: #8811ff;
+  button.skip {
+    background: #ff4d4d;
   }
 
-  .active-users {
-    margin: 20px 0;
-    text-align: center;
-  }
-
-  .active-user {
-    padding: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 5px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  button:hover {
+    opacity: 0.9;
   }
 </style>
-
-<div class="chat">
-  <ul class="messages">
-    {#each messages as msg}
-      <li class="message">{msg}</li>
-    {/each}
-  </ul>
-  <div class="input-group">
-    <input type="text" bind:value={message} placeholder="Type a message..." />
-    <button on:click={sendMessage}>Send</button>
-  </div>
-  <div class="active-users">
-    <h3>Active Users</h3>
-    <ul>
-      {#each activeUsers as user}
-        <li class="active-user">{user}</li>
-      {/each}
-    </ul>
-  </div>
-</div>

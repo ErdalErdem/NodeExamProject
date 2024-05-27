@@ -1,8 +1,14 @@
+import { io } from 'socket.io-client';
 import './app.css'
 import App from './App.svelte';
 
-const app = new App({
-  target: document.getElementById('app'),
-})
+const socket = io('http://localhost:8080');
 
-export default app
+const app = new App({
+  target: document.body,
+  props: {
+    socket
+  }
+});
+
+export default app;

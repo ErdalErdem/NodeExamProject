@@ -8,54 +8,50 @@
   import Home from "./pages/Home/Home.svelte";
   import Unauthorized from './pages/Auth/Auth.svelte';
   import RateLimitExceeded from './pages/RateLimit/RateLimit.svelte';
-    import User from './pages/User/User.svelte';
-    import Contact from './pages/Contact/Contact.svelte';
-    import Login from './pages/Login/Login.svelte';
-    import Chat from './pages/Chat/Chat.svelte';
+  import User from './pages/User/User.svelte';
+  import Contact from './pages/Contact/Contact.svelte';
+  import Login from './pages/Login/Login.svelte';
+  import Chat from './pages/Chat/Chat.svelte';
+
+  export let socket;
 
   onMount(async () => {
       await checkSession();
   });
-
 </script>
-
 
 <main>
   <Header />
   <Router>
-
     <Route path="/" component={Login} />
 
     <Route path="/Home">
-      <PrivateRouteGuard>
+      <PrivateRouteGuard {socket}>
         <Home />
       </PrivateRouteGuard>
     </Route>
 
     <Route path="/User">
-      <PrivateRouteGuard>
+      <PrivateRouteGuard {socket}>
         <User />
       </PrivateRouteGuard>
     </Route>
 
     <Route path="/Chat">
-      <PrivateRouteGuard>
-        <Chat />
+      <PrivateRouteGuard {socket}>
+        <Chat {socket} />
       </PrivateRouteGuard>
     </Route>
 
     <Route path="/Contact">
-      <PrivateRouteGuard>
+      <PrivateRouteGuard {socket}>
         <Contact />
       </PrivateRouteGuard>
     </Route>
 
-  
-  
     <Route path="/Unauthorized" component={Unauthorized} />
 
     <Route path="/RateLimitExceeded" component={RateLimitExceeded} />
   </Router>
-
   <Footer />
 </main>
