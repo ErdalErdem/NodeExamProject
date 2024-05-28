@@ -134,13 +134,6 @@
     margin-top: -20rem;
   }
 
-  .profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite;
-  }
 
   h1 {
     color: white;
@@ -165,7 +158,7 @@
     justify-content: space-around;
   }
 
-  .logout, .edit-profile-picture {
+  .logout {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -183,10 +176,6 @@
     background-color: #b10000;
   }
 
-  .edit-profile-picture {
-    background-color: #1177ff;
-    color: #fff;
-  }
 
   .edit-profile-picture:hover {
     background-color: #0044b3;
