@@ -69,7 +69,7 @@ NodeExamProject-master/
 ### Steps
 1. Clone the repository
     ```sh
-    git clone <repository_url>
+    git clone https://github.com/ErdalErdem/NodeExamProject.git
     cd NodeExamProject-master
     ```
 
@@ -94,14 +94,14 @@ NodeExamProject-master/
 Navigate to the `server` directory and start the server:
 ```sh
 cd server
-npm start
+nodemon app.js
 ```
 
 ### Running the Client
 Navigate to the `client` directory and start the client:
 ```sh
 cd client
-npm run dev
+npm run dev or sudo npm run dev
 ```
 
 ## API Endpoints
