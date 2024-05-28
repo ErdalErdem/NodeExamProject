@@ -2,126 +2,88 @@
 # NodeExamProject
 
 ## Overview
+NodeExamProject is a web application that consists of a client and server. The client is built with Svelte and Vite, and the server is built with Node.js and Express. This project includes functionalities for user authentication, session management, XSS prevention, and a machine learning model for fruit prediction.
 
-NodeExamProject is a comprehensive project combining both frontend and backend components to deliver a full-stack web application. The project includes user authentication, session management, and various utility features. It utilizes Node.js for the backend and Svelte for the frontend.
-
-## Table of Contents
-
-1. [Project Structure](#project-structure)
-2. [Prerequisites](#prerequisites)
-3. [Setup and Installation](#setup-and-installation)
-4. [Environment Variables](#environment-variables)
-5. [Running the Application](#running-the-application)
-6. [API Endpoints](#api-endpoints)
-7. [License](#license)
+## Features
+- User Authentication
+- Session Management
+- XSS Prevention
+- Fruit Prediction using a Machine Learning Model
 
 ## Project Structure
+- **client/**: Contains the front-end code.
+- **server/**: Contains the back-end code.
+- **public/**: Contains static assets like images and icons.
+- **database/**: Contains database connection and setup files.
 
-The project is organized into the following directories:
+## Installation
 
-- `client`: Contains the frontend application built with Svelte.
-- `server`: Contains the backend application built with Node.js and Express.
-- `server/database`: Contains database connection and setup scripts.
-- `server/routers`: Contains route handlers for various API endpoints.
-- `server/util`: Contains utility functions for the backend.
+### Prerequisites
+- Node.js
+- npm
 
-### Frontend (Client)
+### Steps
+1. Clone the repository
+    ```sh
+    git clone <repository_url>
+    cd NodeExamProject-master
+    ```
 
-- **Main files**:
-  - `index.html`: The main HTML file.
-  - `main.js`: The main JavaScript entry point.
-  - `App.svelte`: The main Svelte component.
-  - `vite.config.js`: Vite configuration file.
+2. Install server dependencies
+    ```sh
+    cd server
+    npm install
+    ```
 
-- **Directories**:
-  - `public`: Contains public assets like images.
-  - `src`: Contains source code, including components, stores, and utilities.
+3. Install client dependencies
+    ```sh
+    cd ../client
+    npm install
+    ```
 
-### Backend (Server)
+4. Setup environment variables
+    - Copy `.env.sample` to `.env` in the server directory and fill in the required values.
 
-- **Main files**:
-  - `app.js`: The main entry point for the backend server.
-  - `package.json`: Contains dependencies and scripts for the backend.
-  - `predict.py`: Python script for model prediction.
-  - `train_model.py`: Python script for training the model.
+## Usage
 
-- **Directories**:
-  - `database`: Contains database setup and connection scripts.
-  - `routers`: Contains route handlers.
-  - `util`: Contains utility functions for password handling and sanitization.
+### Running the Server
+Navigate to the `server` directory and start the server:
+```sh
+cd server
+npm start
+```
 
-## Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js (v14 or later)
-- NPM (v6 or later)
-- Python (if using machine learning scripts)
-- MySQL (for database setup)
-
-## Setup and Installation
-
-1. **Clone the repository**:
-   \`\`\`sh
-   git clone https://github.com/yourusername/NodeExamProject.git
-   cd NodeExamProject
-   \`\`\`
-
-2. **Install dependencies**:
-
-   - For the backend:
-     \`\`\`sh
-     cd server
-     npm install
-     \`\`\`
-
-   - For the frontend:
-     \`\`\`sh
-     cd client
-     npm install
-     \`\`\`
-
-3. **Setup the database**:
-   - Ensure MySQL is running and create a database.
-   - Update the database connection settings in `server/database/connectMySql.js`.
-
-4. **Environment Variables**:
-   - Copy the sample environment file and update it with your settings:
-     \`\`\`sh
-     cp .env.sample .env
-     \`\`\`
-
-## Running the Application
-
-1. **Backend**:
-   \`\`\`sh
-   cd server
-   npm start
-   \`\`\`
-
-2. **Frontend**:
-   \`\`\`sh
-   cd client
-   npm run dev
-   \`\`\`
+### Running the Client
+Navigate to the `client` directory and start the client:
+```sh
+cd client
+npm run dev
+```
 
 ## API Endpoints
 
-Here are some of the main API endpoints available in the backend:
+### User Authentication
+- **POST /api/auth/register**: Register a new user.
+- **POST /api/auth/login**: Login a user.
 
-- **User Authentication**:
-  - \`POST /auth/login\`: Login a user.
-  - \`POST /auth/register\`: Register a new user.
+### Session Management
+- **GET /api/session**: Check user session.
 
-- **Session Management**:
-  - \`GET /session\`: Get current session.
-  - \`DELETE /session\`: Logout a user.
+### Fruit Prediction
+- **POST /api/predict**: Predict the type of fruit.
 
-- **Prediction**:
-  - \`POST /predict\`: Make a prediction using the trained model.
+### XSS Prevention
+- **POST /api/xss**: Check for XSS vulnerabilities.
 
-For more details, refer to the route handlers in the \`server/routers\` directory.
+## Machine Learning Model
+The machine learning model for fruit prediction is located in `server/fruit_model.h5` and is utilized by the `predict.py` script.
+
+## Contributing
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -m 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
