@@ -1,7 +1,7 @@
 
 # NodeExamProject
 
-![Alt text](client/public/icon.png)
+![Alt text](client/public/Justchattingbanner.png)
 
 
 ## Table of Contents
