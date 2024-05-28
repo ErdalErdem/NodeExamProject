@@ -1,4 +1,4 @@
-# Exam Requirements for Full Stack Node.js
+# Exam Project - Svelte and Node.js
 
 **Type**: Both individual and group work is allowed. You still need to understand all the code. Collaborations across electives are also allowed.
 
