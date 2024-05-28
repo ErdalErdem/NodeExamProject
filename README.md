@@ -1,93 +1,127 @@
-# Exam Requirements for Full Stack Node.js
 
-**Type**: Both individual and group work is allowed. You still need to understand all the code. Collaborations across electives are also allowed.
+# NodeExamProject
 
-**Deadline**: Check Wiseflow for when the hand-in deadline is. You must submit a full stack project by then but you can still work on your project up until the exam. You will only be evaluated based on the final project. Upload a Git link to your project (PDF) or the code as a zip file (requires an empty PDF first). 
+## Table of Contents
 
-**Scope**: There should be enough features that you can talk incessantly for 5-6 minutes while showcasing your product. 
+- [Introduction](#introduction)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Environment Variables](#environment-variables)
+- [License](#license)
 
-Auth is a requirement and you are free to reuse everything from Mandatory II.
+## Introduction
 
-You are not allowed to reuse Mandatory I. 
+NodeExamProject is a full-stack application built using Node.js for the server-side and Svelte for the client-side. This project demonstrates a variety of functionalities including user authentication, session management, and data sanitization.
 
-## Hard requirements
+## Project Structure
 
-These are the minimum requirement. The project must contain these elements:
+```
+NodeExamProject/
+├── .env.sample
+├── .gitignore
+├── LICENSE
+├── README.md
+├── request.rest
+├── client/
+│   ├── .gitignore
+│   ├── README.md
+│   ├── index.html
+│   ├── jsconfig.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── svelte.config.js
+│   ├── vite.config.js
+│   ├── public/
+│   │   ├── facebook-icon.png
+│   │   ├── github-icon.png
+│   │   ├── icon.png
+│   │   ├── linkedin-icon.png
+│   │   ├── twitter-icon.png
+│   ├── src/
+│   │   ├── App.svelte
+│   │   ├── app.css
+│   │   ├── main.js
+│   │   ├── vite-env.d.ts
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── stores/
+│   │   └── util/
+├── server/
+    ├── app.js
+    ├── database.db
+    ├── package-lock.json
+    ├── package.json
+    ├── database/
+    ├── routers/
+    └── util/
+```
 
-### Backend
+## Prerequisites
 
-* Use Express
+Ensure you have the following installed on your machine:
 
-* Use a database (You need access to your database through the terminal and be able to write your own queries to it during the exam). Choose the appropriate database for your project. You are expected to research and make an informed choice.
+- Node.js (v14.x or higher)
+- npm (v6.x or higher)
+- A modern web browser
 
-* Use Sockets.
+## Installation
 
-* Have authentication and authorization. 
+1. **Clone the repository:**
 
-### Frontend
+   ```bash
+   git clone https://github.com/yourusername/NodeExamProject.git
+   cd NodeExamProject
+   ```
 
-* Plain HTML, template engines or Svelte (/kit) are okay.
+2. **Install server dependencies:**
 
-* Use Fetch.
+   ```bash
+   cd server
+   npm install
+   ```
 
-* Use Sockets.
+3. **Install client dependencies:**
 
-* Have authentication and authorization. 
+   ```bash
+   cd ../client
+   npm install
+   ```
 
-## Soft requirements (You should fulfill these too):
+## Running the Application
 
-* You must have a clean code base and your code style should be consistent. 
+1. **Set up environment variables:**
 
-* You must make an attempt at styling your website. Styling frameworks can be used. User experience is important too. 
+   Copy `.env.sample` to `.env` in the root directory and fill in the required environment variables.
 
-## Bonus:
+2. **Run the server:**
 
-* Host your application.
+   ```bash
+   cd server
+   npm start
+   ```
 
-## Prodduction ready (hard requirement):
+3. **Run the client:**
 
-Whether the project is hosted or not the project must be production ready which means that: 
+   In a new terminal window:
 
-* the code shouldn’t be littered with console logs, unused code, unfinished snippets etc.
+   ```bash
+   cd client
+   npm run dev
+   ```
 
-* Consider making the website legal by conforming to GDPR. 
+4. **Access the application:**
 
----
----
----
----
+   Open your web browser and navigate to `http://localhost:3000` for the client application.
 
-# Exam
+## Environment Variables
 
-Language: Danish
+The application requires several environment variables to run. Refer to the `.env.sample` file for the necessary variables. At a minimum, you will need to set up:
 
-Be prepared: The project should be up and running. 
+- `DATABASE_URL` - URL for the database connection
+- `SESSION_SECRET` - Secret key for session management
 
-Editor: Dark mode is fine but either:
+## License
 
-1. Connect your computer to a projector in the classroom to set the proper size ahead of the exam. 
-
-2. Or learn how to zoom in your code editor of choice.
-
-Remember that it's a conversation and there will be many questions. It is better to say "I don't know" than to answer wrong.
-
-## Demo your exam project (First 5-6 minutes)
-
-Demo means no code but constantly showing features. A feature in the context to demoing is everything a user can do with your system / website. 
-
-It’s not a pitch, it’s a demo. The UI and UX should be so well made that the website doesn’t require explanations and any users should be able to see the design and flow and understand what it’s about.  
-
-**NEVER** show how to log in or sign up. The exception is if you've implemented additional features compared to the Mandatory II requirements (e.g. a forgot password feature). 
-
-**Info**: I might seem impatient during the demo part but it’s because I use the measured time it takes to demo unique features of the system to place you in a grade category. Expect me to instruct you if the demo sidetracks or is slowed down by explanations. If talking during the demo part means not showcasing features then a silent demo is preferred. The goal is not to create a stressful exam but for me to create an objective measurement to the grading system.   
-
-
-## Discussion
-
-We will talk about your exam project. Code and more.
-
-## Live Coding
-
-You will be asked to live code! Either right away if I notice some things about your project or in the end. 
-
-You are not allowed to use snippets or code assisting tools (Copilot etc.) during the exam. IntelliSense is allowed.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
