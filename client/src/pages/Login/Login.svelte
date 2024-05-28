@@ -37,7 +37,7 @@
     }
 
     setTimeout(() => {
-      navigate("/User");
+      navigate("/Home");
     }, 2000);
   }
 
