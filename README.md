@@ -11,6 +11,7 @@ NodeExamProject is a web application that consists of a client and server. The c
 - Fruit Prediction using a Machine Learning Model
 
 ## Project Structure
+```markdown
 NodeExamProject-master/
 ├── .env.sample
 ├── .gitignore
@@ -54,6 +55,7 @@ NodeExamProject-master/
 │   ├── database/
 │   ├── routers/
 │   ├── util/
+```
 
 ## Installation
 
