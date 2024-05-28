@@ -1,7 +1,7 @@
 
 # NodeExamProject
 
-![Alt text](client/public/Justchattingbanner.png)
+<img src="client/public/Justchattingbanner.png" alt="Example Image" width="600" />
 
 
 ## Table of Contents
