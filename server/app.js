@@ -27,7 +27,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -69,19 +68,31 @@ app.use(authRouter);
 
 io.on('connection', (socket) => {
   console.log('New client connected');
-  
+
+  socket.on('joinRoom', ({ room, username }) => {
+    socket.join(room);
+    console.log(`${username} joined room: ${room}`);
+  });
+
+  socket.on('leaveRoom', (room) => {
+    socket.leave(room);
+    console.log(`Client left room: ${room}`);
+  });
+
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });
 
-  socket.on('chatMessage', (msg) => {
-    io.emit('chatMessage', msg);
+  socket.on('chatMessage', ({ msg, room, user }) => {
+    io.to(room).emit('chatMessage', { user, msg });
   });
 
-  socket.on('skip', () => {
-    // Logic to handle skip
+  socket.on('skip', (room) => {
+    // Logic to handle skip for the specific room
   });
 });
+
+
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {

@@ -1,39 +1,85 @@
 <script>
+  import { onMount, afterUpdate } from 'svelte';
   export let socket;
 
   let message = '';
   let messages = [];
+  let currentRoom = '';
+  let username = 'User' + Math.floor(Math.random() * 1000);
+  let chatContainer;
+  let pageVisible = false;
 
   if (socket) {
-    socket.on('chatMessage', (msg) => {
-      messages = [...messages, msg];
+    socket.on('chatMessage', ({ user, msg }) => {
+      messages = [...messages, { user, msg, isCurrentUser: user === username }];
     });
+  }
+
+  function joinRoom(room) {
+    if (currentRoom !== '') {
+      socket.emit('leaveRoom', currentRoom);
+    }
+    currentRoom = room;
+    socket.emit('joinRoom', { room, username });
+    messages = []; // Clear messages when joining a new room
+  }
+
+  function leaveRoom() {
+    if (currentRoom !== '') {
+      socket.emit('leaveRoom', currentRoom);
+      currentRoom = '';
+      messages = [];
+    }
   }
 
   function sendMessage() {
     if (message.trim() !== '') {
-      socket.emit('chatMessage', message);
+      socket.emit('chatMessage', { msg: message, room: currentRoom, user: username });
       message = '';
     }
   }
 
   function skipUser() {
-    socket.emit('skip');
+    socket.emit('skip', currentRoom);
   }
+
+  function scrollToBottom() {
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+  }
+
+  onMount(() => {
+    pageVisible = true;
+    joinRoom('defaultRoom');
+  });
+
+  afterUpdate(() => {
+    scrollToBottom();
+  });
 </script>
 
-<main>
-  <h1>Real-Time Chat</h1>
-  <div class="chat-container">
+<main class:fade-in={pageVisible}>
+  <h1>JustChatting</h1>
+  <div class="room-container">
+    <button on:click={() => joinRoom('Meet new friends')}>Meet new friends</button>
+    <button on:click={() => joinRoom('Talk interest')}>Talk interest</button>
+    <button on:click={leaveRoom}>Leave Room</button>
+  </div>
+  <p class="current-room">Current Room: <span>{currentRoom || 'No Room'}</span></p>
+  <div class="chat-container" bind:this={chatContainer}>
     <div class="messages">
-      {#each messages as msg}
-        <div class="message">{msg}</div>
+      {#each messages as { user, msg, isCurrentUser }}
+        <div class="message-container {isCurrentUser ? 'current-user' : 'other-user'}">
+          <div class="message">
+            <strong>{user}:</strong> {msg}
+          </div>
+        </div>
       {/each}
     </div>
     <div class="input-container">
       <input bind:value={message} placeholder="Type a message" on:keydown={(e) => e.key === 'Enter' && sendMessage()} />
       <button on:click={sendMessage}>Send</button>
-      <button class="skip" on:click={skipUser}>Skip</button>
     </div>
   </div>
 </main>
@@ -45,6 +91,41 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+  .fade-in {
+    opacity: 1;
+  }
+
+  .room-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .current-room {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .current-room span {
+    font-weight: bold;
+    color: #ffde59;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   .chat-container {
@@ -56,21 +137,48 @@
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
   }
 
   .messages {
     flex: 1;
-    overflow-y: auto;
     margin-bottom: 1rem;
-    max-height: 400px;
+  }
+
+  .message-container {
+    display: flex;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+  }
+
+  .current-user {
+    justify-content: flex-start;
+  }
+
+  .other-user {
+    justify-content: flex-end;
   }
 
   .message {
+    max-width: 60%;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     background: #444;
-    padding: 0.5rem;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    word-break: break-word;
+    color: #ddd;
+    position: relative;
+  }
+
+  .current-user .message {
+    background: #646cff;
+    color: #fff;
+    border-bottom-left-radius: 0;
+  }
+
+  .other-user .message {
+    background: #444;
+    color: #ddd;
+    border-bottom-right-radius: 0;
   }
 
   .input-container {
@@ -96,9 +204,6 @@
     cursor: pointer;
   }
 
-  button.skip {
-    background: #ff4d4d;
-  }
 
   button:hover {
     opacity: 0.9;
