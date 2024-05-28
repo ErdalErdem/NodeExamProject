@@ -22,7 +22,7 @@
       if (userProfile && userProfile.name) {
         welcomeMessage = `Welcome, ${userProfile.name}!`;
       } else {
-        welcomeMessage = `Welcome to JustChatting!`;
+        welcomeMessage = `Welcome to JustChatting + Fruit?`;
       }
       randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     });

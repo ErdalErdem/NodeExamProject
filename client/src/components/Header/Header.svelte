@@ -22,7 +22,7 @@
       <button on:click={() => navigateTo('User')}>
         <img src="/public/icon.png" alt="Logo">
       </button>
-      <div class="site-name">JustChatting</div>
+      <div class="site-name">JustChatting + Fruit?</div>
     </div>
     <ul class="nav-links">
       <li><button on:click={() => navigateTo('Home')}>Home</button></li>

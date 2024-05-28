@@ -8,7 +8,7 @@
   
   <footer>
     <div class="footer-content">
-      <p>© 2024 JustChatting</p>
+      <p>© 2024 JustChatting + Fruit?</p>
       <div class="social-links">
         <a href="https://github.com" target="_blank">
           <img src="/public/github-icon.png" alt="Github">
