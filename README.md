@@ -1,6 +1,9 @@
 
 # NodeExamProject
 
+![Alt text](client/public/icon.png)
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
