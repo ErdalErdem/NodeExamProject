@@ -1,6 +1,9 @@
 
 # NodeExamProject
 
+<img src="client/public/Justchattingbanner.png" alt="Description of image" width="300" height="200">
+
+
 ## Overview
 NodeExamProject is a web application that consists of a client and server. The client is built with Svelte and Vite, and the server is built with Node.js and Express. This project includes functionalities for user authentication, session management, XSS prevention, and a machine learning model for fruit prediction.
 
