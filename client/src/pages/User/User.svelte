@@ -6,17 +6,24 @@
 
   let userid = $user.user.id;
   let username = $user.user.name;
-  let lastLogin = '';
   let quote = '';
+  let greeting = '';
+  let profilePicture = 'client/public/images/profile-picture.png'; // Static profile picture URL
 
   onMount(async () => {
-    await fetchLastLogin();
+    setGreeting();
     await fetchQuote();
   });
 
-  async function fetchLastLogin() {
-    // Fetch last login data (dummy data for demonstration)
-    lastLogin = 'May 20, 2024, 10:30 AM';
+  function setGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      greeting = 'Good Morning';
+    } else if (hour < 18) {
+      greeting = 'Good Afternoon';
+    } else {
+      greeting = 'Good Evening';
+    }
   }
 
   async function fetchQuote() {
@@ -62,18 +69,22 @@
       }
     );
   }
+
+  function editProfilePicture() {
+    // Function to handle profile picture editing
+    alert('Edit profile picture feature is not yet implemented.');
+  }
 </script>
 
 <main>
   <Toaster />
 
   <div class="user-container">
-    <h1>Hi, {username || "Not Available"}</h1>
+    <h1>{greeting}, {username || "Not Available"}</h1>
     <div class="info-box">
-      <p><strong>Last Logged In:</strong> {lastLogin}</p>
       <p><strong>Quote of the Day:</strong> "{quote}"</p>
     </div>
-       <div class="logout-button">
+    <div class="buttons">
       <button on:click={handlePostLogoutWithToasts} class="logout">Logout</button>
     </div>
   </div>
@@ -123,11 +134,18 @@
     margin-top: -20rem;
   }
 
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
   h1 {
     color: white;
     margin-bottom: 1rem;
     font-size: 2rem;
-    animation: float 3s ease-in-out infinite;
   }
 
   .info-box {
@@ -142,23 +160,35 @@
     margin: 0.5rem 0;
   }
 
-  .logout-button {
+  .buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
 
-  .logout {
+  .logout, .edit-profile-picture {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #ff1111;
-    color: #fff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
   }
 
+  .logout {
+    background-color: #ff1111;
+    color: #fff;
+  }
+
   .logout:hover {
     background-color: #b10000;
+  }
+
+  .edit-profile-picture {
+    background-color: #1177ff;
+    color: #fff;
+  }
+
+  .edit-profile-picture:hover {
+    background-color: #0044b3;
   }
 </style>
