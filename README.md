@@ -1,92 +1,82 @@
-# Exam Project - Svelte and Node.js
+# JustChatting
 
-## Justchatting - Chatting application with focus on meeting new people.
-**Deadline**: Check Wiseflow for when the hand-in deadline is. You must submit a full stack project by then but you can still work on your project up until the exam. You will only be evaluated based on the final project. Upload a Git link to your project (PDF) or the code as a zip file (requires an empty PDF first). 
+Welcome to **JustChatting**, a real-time chat application where users can join different rooms, send messages, and interact seamlessly.
 
-**Scope**: There should be enough features that you can talk incessantly for 5-6 minutes while showcasing your product. 
+## Features
 
-Auth is a requirement and you are free to reuse everything from Mandatory II.
+- **Join and Leave Rooms:** Easily switch between different chat rooms or leave a room when needed.
+- **Real-Time Messaging:** Messages are sent and received in real-time, ensuring an interactive experience.
+- **Dynamic Room Display:** Current room is prominently displayed with stylish animations.
+- **User-Friendly UI:** Clean, modern interface with automatic scrolling to the latest messages.
 
-You are not allowed to reuse Mandatory I. 
+## Screenshots
 
-## Hard requirements
+![Chat Room](screenshots/chat-room.png)
 
-These are the minimum requirement. The project must contain these elements:
+## Getting Started
 
-### Backend
+### Prerequisites
 
-* Use Express
+- [Node.js](https://nodejs.org/) installed on your machine.
 
-* Use a database (You need access to your database through the terminal and be able to write your own queries to it during the exam). Choose the appropriate database for your project. You are expected to research and make an informed choice.
+### Installation
 
-* Use Sockets.
+1. Clone the repository:
 
-* Have authentication and authorization. 
+    ```bash
+    git clone https://github.com/your-username/justchatting.git
+    cd justchatting
+    ```
 
-### Frontend
+2. Install dependencies:
 
-* Plain HTML, template engines or Svelte (/kit) are okay.
+    ```bash
+    npm install
+    ```
 
-* Use Fetch.
+3. Create a `.env` file in the root directory and add your environment variables:
 
-* Use Sockets.
+    ```plaintext
+    SESSION_SECRET=your_session_secret
+    PORT=8080
+    ```
 
-* Have authentication and authorization. 
+### Running the Application
 
-## Soft requirements (You should fulfill these too):
+1. Start the server:
 
-* You must have a clean code base and your code style should be consistent. 
+    ```bash
+    npm start
+    ```
 
-* You must make an attempt at styling your website. Styling frameworks can be used. User experience is important too. 
+2. Open your browser and navigate to `http://localhost:8080`.
 
-## Bonus:
+## Usage
 
-* Host your application.
+- **Joining a Room:** Click on the room buttons (e.g., "Meet new friends", "Talk interest") to join a specific room.
+- **Leaving a Room:** Click on the "Leave Room" button to exit the current room.
+- **Sending Messages:** Type your message in the input box and hit "Enter" or click "Send" to send a message.
+- **Skipping Users:** Click on the "Skip" button to skip a user (if applicable).
 
-## Prodduction ready (hard requirement):
+## Project Structure
 
-Whether the project is hosted or not the project must be production ready which means that: 
-
-* the code shouldn’t be littered with console logs, unused code, unfinished snippets etc.
-
-* Consider making the website legal by conforming to GDPR. 
-
----
----
----
----
-
-# Exam
-
-Language: Danish
-
-Be prepared: The project should be up and running. 
-
-Editor: Dark mode is fine but either:
-
-1. Connect your computer to a projector in the classroom to set the proper size ahead of the exam. 
-
-2. Or learn how to zoom in your code editor of choice.
-
-Remember that it's a conversation and there will be many questions. It is better to say "I don't know" than to answer wrong.
-
-## Demo your exam project (First 5-6 minutes)
-
-Demo means no code but constantly showing features. A feature in the context to demoing is everything a user can do with your system / website. 
-
-It’s not a pitch, it’s a demo. The UI and UX should be so well made that the website doesn’t require explanations and any users should be able to see the design and flow and understand what it’s about.  
-
-**NEVER** show how to log in or sign up. The exception is if you've implemented additional features compared to the Mandatory II requirements (e.g. a forgot password feature). 
-
-**Info**: I might seem impatient during the demo part but it’s because I use the measured time it takes to demo unique features of the system to place you in a grade category. Expect me to instruct you if the demo sidetracks or is slowed down by explanations. If talking during the demo part means not showcasing features then a silent demo is preferred. The goal is not to create a stressful exam but for me to create an objective measurement to the grading system.   
-
-
-## Discussion
-
-We will talk about your exam project. Code and more.
-
-## Live Coding
-
-You will be asked to live code! Either right away if I notice some things about your project or in the end. 
-
-You are not allowed to use snippets or code assisting tools (Copilot etc.) during the exam. IntelliSense is allowed.
+```plaintext
+.
+├── public
+│   ├── index.html
+│   ├── main.css
+│   └── main.js
+├── src
+│   ├── components
+│   │   └── Chat.svelte
+│   ├── routes
+│   │   └── index.js
+│   ├── server.js
+│   └── utils
+│       └── helpers.js
+├── .env
+├── .gitignore
+├── package.json
+├── README.md
+└── screenshots
+    └── chat-room.png
