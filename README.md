@@ -1,131 +1,127 @@
 
 # NodeExamProject
 
-<img src="client/public/Justchattingbanner.png" alt="Example Image" width="600" />
+## Overview
 
+NodeExamProject is a comprehensive project combining both frontend and backend components to deliver a full-stack web application. The project includes user authentication, session management, and various utility features. It utilizes Node.js for the backend and Svelte for the frontend.
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the Application](#running-the-application)
-- [Environment Variables](#environment-variables)
-- [License](#license)
-
-## Introduction
-
-NodeExamProject is a full-stack application built using Node.js for the server-side and Svelte for the client-side. This project demonstrates a variety of functionalities including user authentication, session management, and data sanitization.
+1. [Project Structure](#project-structure)
+2. [Prerequisites](#prerequisites)
+3. [Setup and Installation](#setup-and-installation)
+4. [Environment Variables](#environment-variables)
+5. [Running the Application](#running-the-application)
+6. [API Endpoints](#api-endpoints)
+7. [License](#license)
 
 ## Project Structure
 
-```
-NodeExamProject/
-├── .env.sample
-├── .gitignore
-├── LICENSE
-├── README.md
-├── request.rest
-├── client/
-│   ├── .gitignore
-│   ├── README.md
-│   ├── index.html
-│   ├── jsconfig.json
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── svelte.config.js
-│   ├── vite.config.js
-│   ├── public/
-│   │   ├── facebook-icon.png
-│   │   ├── github-icon.png
-│   │   ├── icon.png
-│   │   ├── linkedin-icon.png
-│   │   ├── twitter-icon.png
-│   ├── src/
-│   │   ├── App.svelte
-│   │   ├── app.css
-│   │   ├── main.js
-│   │   ├── vite-env.d.ts
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── stores/
-│   │   └── util/
-├── server/
-    ├── app.js
-    ├── database.db
-    ├── package-lock.json
-    ├── package.json
-    ├── database/
-    ├── routers/
-    └── util/
-``` 
+The project is organized into the following directories:
 
+- `client`: Contains the frontend application built with Svelte.
+- `server`: Contains the backend application built with Node.js and Express.
+- `server/database`: Contains database connection and setup scripts.
+- `server/routers`: Contains route handlers for various API endpoints.
+- `server/util`: Contains utility functions for the backend.
+
+### Frontend (Client)
+
+- **Main files**:
+  - `index.html`: The main HTML file.
+  - `main.js`: The main JavaScript entry point.
+  - `App.svelte`: The main Svelte component.
+  - `vite.config.js`: Vite configuration file.
+
+- **Directories**:
+  - `public`: Contains public assets like images.
+  - `src`: Contains source code, including components, stores, and utilities.
+
+### Backend (Server)
+
+- **Main files**:
+  - `app.js`: The main entry point for the backend server.
+  - `package.json`: Contains dependencies and scripts for the backend.
+  - `predict.py`: Python script for model prediction.
+  - `train_model.py`: Python script for training the model.
+
+- **Directories**:
+  - `database`: Contains database setup and connection scripts.
+  - `routers`: Contains route handlers.
+  - `util`: Contains utility functions for password handling and sanitization.
 
 ## Prerequisites
 
-Ensure you have the following installed on your machine:
+Make sure you have the following installed:
 
-- Node.js (v14.x or higher)
-- npm (v6.x or higher)
-- A modern web browser
+- Node.js (v14 or later)
+- NPM (v6 or later)
+- Python (if using machine learning scripts)
+- MySQL (for database setup)
 
-## Installation
+## Setup and Installation
 
-1. **Clone the repository:**
-
-   ```bash
+1. **Clone the repository**:
+   \`\`\`sh
    git clone https://github.com/yourusername/NodeExamProject.git
    cd NodeExamProject
-   ```
+   \`\`\`
 
-2. **Install server dependencies:**
+2. **Install dependencies**:
 
-   ```bash
-   cd server
-   npm install
-   ```
+   - For the backend:
+     \`\`\`sh
+     cd server
+     npm install
+     \`\`\`
 
-3. **Install client dependencies:**
+   - For the frontend:
+     \`\`\`sh
+     cd client
+     npm install
+     \`\`\`
 
-   ```bash
-   cd ../client
-   npm install
-   ```
+3. **Setup the database**:
+   - Ensure MySQL is running and create a database.
+   - Update the database connection settings in `server/database/connectMySql.js`.
+
+4. **Environment Variables**:
+   - Copy the sample environment file and update it with your settings:
+     \`\`\`sh
+     cp .env.sample .env
+     \`\`\`
 
 ## Running the Application
 
-1. **Set up environment variables:**
-
-   Copy `.env.sample` to `.env` in the root directory and fill in the required environment variables.
-
-2. **Run the server:**
-
-   ```bash
+1. **Backend**:
+   \`\`\`sh
    cd server
-   nodemon app.js
-   ```
+   npm start
+   \`\`\`
 
-3. **Run the client:**
-
-   In a new terminal window:
-
-   ```bash
+2. **Frontend**:
+   \`\`\`sh
    cd client
-   npm run dev - if needed sudo npm run dev
-   ```
+   npm run dev
+   \`\`\`
 
-4. **Access the application:**
+## API Endpoints
 
-   Open your web browser and navigate to `http://localhost:8080` for the client application.
+Here are some of the main API endpoints available in the backend:
 
-## Environment Variables
+- **User Authentication**:
+  - \`POST /auth/login\`: Login a user.
+  - \`POST /auth/register\`: Register a new user.
 
-The application requires several environment variables to run. Refer to the `.env.sample` file for the necessary variables. At a minimum, you will need to set up:
+- **Session Management**:
+  - \`GET /session\`: Get current session.
+  - \`DELETE /session\`: Logout a user.
 
-- `DATABASE_URL` - URL for the database connection
-- `SESSION_SECRET` - Secret key for session management
+- **Prediction**:
+  - \`POST /predict\`: Make a prediction using the trained model.
+
+For more details, refer to the route handlers in the \`server/routers\` directory.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
