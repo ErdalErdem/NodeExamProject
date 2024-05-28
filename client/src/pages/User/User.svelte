@@ -176,8 +176,4 @@
     background-color: #b10000;
   }
 
-
-  .edit-profile-picture:hover {
-    background-color: #0044b3;
-  }
 </style>
