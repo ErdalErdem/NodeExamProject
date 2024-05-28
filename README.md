@@ -1,7 +1,6 @@
 # Exam Project - Svelte and Node.js
 
-**Type**: Both individual and group work is allowed. You still need to understand all the code. Collaborations across electives are also allowed.
-
+## Justchatting - Chatting application with focus on meeting new people.
 **Deadline**: Check Wiseflow for when the hand-in deadline is. You must submit a full stack project by then but you can still work on your project up until the exam. You will only be evaluated based on the final project. Upload a Git link to your project (PDF) or the code as a zip file (requires an empty PDF first). 
 
 **Scope**: There should be enough features that you can talk incessantly for 5-6 minutes while showcasing your product. 
