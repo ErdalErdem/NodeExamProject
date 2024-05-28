@@ -1,6 +1,9 @@
 
 # NodeExamProject
 
+![Alt text](client/public/Justchattingbanner.png)
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -99,7 +102,7 @@ Ensure you have the following installed on your machine:
 
    ```bash
    cd server
-   npm start
+   nodemon app.js
    ```
 
 3. **Run the client:**
@@ -108,12 +111,12 @@ Ensure you have the following installed on your machine:
 
    ```bash
    cd client
-   npm run dev
+   npm run dev - if needed sudo npm run dev
    ```
 
 4. **Access the application:**
 
-   Open your web browser and navigate to `http://localhost:3000` for the client application.
+   Open your web browser and navigate to `http://localhost:8080` for the client application.
 
 ## Environment Variables
 
