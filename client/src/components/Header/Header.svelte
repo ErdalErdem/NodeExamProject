@@ -27,6 +27,7 @@
     <ul class="nav-links">
       <li><button on:click={() => navigateTo('Home')}>Home</button></li>
       <li><button on:click={() => navigateTo('Chat')}>Chat</button></li>
+      <li><button on:click={() => navigateTo('Predict')}>Predict</button></li>
       <li><button on:click={() => navigateTo('User')}>User</button></li>
     </ul>
   </nav>

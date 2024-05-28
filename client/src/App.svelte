@@ -12,6 +12,7 @@
   import Contact from './pages/Contact/Contact.svelte';
   import Login from './pages/Login/Login.svelte';
   import Chat from './pages/Chat/Chat.svelte';
+  import Predict from './pages/Predict/Predict.svelte';
 
   export let socket;
 
@@ -40,6 +41,12 @@
     <Route path="/Chat">
       <PrivateRouteGuard {socket}>
         <Chat {socket} />
+      </PrivateRouteGuard>
+    </Route>
+
+    <Route path="/Predict">
+      <PrivateRouteGuard {socket}>
+        <Predict {socket} />
       </PrivateRouteGuard>
     </Route>
 

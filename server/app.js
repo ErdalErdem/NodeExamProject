@@ -67,6 +67,9 @@ app.use(authRouter);
 import mailRouter from './routers/mailRouter.js'
 app.use("/api", mailRouter);
 
+import predictRouter from './routers/predictRouter.js'
+app.use(predictRouter);
+
 // Existing middleware and routes setup...
 
 io.on('connection', (socket) => {
