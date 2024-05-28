@@ -6,7 +6,7 @@
     import sanitizeHTML from "../../util/sanitize.js";
     import sanitizeEmail from "../../util/sanitize.js";
   
-    let email = "erda0028@stud.kea.dk";
+    let email = "mc4015@hotmail.com";
     let subject;
     let message;
   
@@ -14,7 +14,7 @@
       const sanitizedEmail = sanitizeEmail(email);
       const sanitizedSubject = sanitizeHTML(subject);
       const sanitizedMessage = sanitizeHTML(message);
-      const response = await fetch(`${BASE_URL}/api/mails`, {
+      const response = await fetch($BASE_URL + "/api/mails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

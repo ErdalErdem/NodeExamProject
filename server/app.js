@@ -64,6 +64,9 @@ app.use(sessionRouter);
 import authRouter from './routers/authRouter.js';
 app.use(authRouter);
 
+import mailRouter from './routers/mailRouter.js'
+app.use("/api", mailRouter);
+
 // Existing middleware and routes setup...
 
 io.on('connection', (socket) => {
