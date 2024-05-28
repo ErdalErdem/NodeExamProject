@@ -3,10 +3,9 @@ import bcrypt from 'bcrypt';
 const router = Router();
 import db from '../database/connection.js';
 
-// GET all users
 router.get('/api/users', async (req, res) => {
     try {
-        const result = await db.all('SELECT * FROM Users'); // Avoid sending passwords
+        const result = await db.all('SELECT * FROM Users'); 
         res.send({ data: result });
     } catch (error) {
         console.error('Database error:', error);
@@ -14,7 +13,6 @@ router.get('/api/users', async (req, res) => {
     }
 });
 
-// POST create a new user
 router.post('/api/users', async (req, res) => {
     const { name, email, password} = req.body;
     if (!name || !email || !password) {

@@ -1,14 +1,13 @@
 import { Router } from 'express';
 import escape from 'escape-html';
-import helmet from 'helmet';  // Import helmet for setting security-related HTTP headers
+import helmet from 'helmet';  
 
 const router = Router();
 
-// Middleware to apply security headers with Helmet
 router.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],  // Only allow scripts from the same origin
+            defaultSrc: ["'self'"],  
             scriptSrc: ["'self'"],
             objectSrc: ["'none'"],
             upgradeInsecureRequests: [],
@@ -18,19 +17,17 @@ router.use(helmet({
 
 const messages = [];
 
-// Fetch messages with escaping to prevent XSS
 router.get('/xss/messages', (req, res) => {
-    res.send({ data: messages });  // Escaping is done before storing, so no need to escape again here
+    res.send({ data: messages });  
 });
 
-// Save a new message with XSS escaping
 router.post('/xss/messages', (req, res) => {
     if (!req.body.message) {
-        return res.status(400).send({ error: 'Message content cannot be empty' }); // Validate input
+        return res.status(400).send({ error: 'Message content cannot be empty' }); 
     }
-    const escapedMessage = escape(req.body.message);  // Escape special HTML characters to prevent XSS
+    const escapedMessage = escape(req.body.message);  
     messages.push(escapedMessage);
-    res.status(201).send({ data: messages });  // Return the updated list of messages
+    res.status(201).send({ data: messages });  
 });
 
 export default router;

@@ -57,7 +57,7 @@
     }
   
     button:hover {
-      background-color: #005bb5; /* Adjusted for the primary color */
+      background-color: #005bb5; 
     }
   
     p {

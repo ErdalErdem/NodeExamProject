@@ -287,8 +287,8 @@
 
   .progress-bar-container {
     width: 100%;
-    height: 8px; /* Increased height */
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    height: 8px; 
+    background: rgba(255, 255, 255, 0.2); 
     border-radius: 4px;
     overflow: hidden;
     margin-bottom: 1rem;
@@ -296,8 +296,8 @@
 
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #a044ff, #6a00ff); /* Gradient color */
-    box-shadow: 0 0 10px rgba(160, 68, 255, 0.5); /* Glow effect */
-    transition: width 0.5s ease; /* Smoother transition */
+    background: linear-gradient(90deg, #a044ff, #6a00ff); 
+    box-shadow: 0 0 10px rgba(160, 68, 255, 0.5); 
+    transition: width 0.5s ease; 
   }
 </style>

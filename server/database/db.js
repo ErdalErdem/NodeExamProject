@@ -15,13 +15,11 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  // Add other fields as necessary
 }, {
-  tableName: 'Users', // Use the existing users table
-  timestamps: false // Assuming your existing table does not have timestamps
+  tableName: 'Users', 
+  timestamps: false 
 });
 
-// Ensure the connection is successful
 sequelize.authenticate().then(() => {
   console.log('Connection to SQLite has been established successfully.');
 }).catch(err => {

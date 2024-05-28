@@ -3,13 +3,11 @@ import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-// Setup to handle __dirname with ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = Router();
 
-// Handle the /predict endpoint
 router.get('/predict', (req, res) => {
     const pythonProcess = spawn('python', ['predict.py']);
 

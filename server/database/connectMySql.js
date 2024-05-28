@@ -1,7 +1,6 @@
 import mysql from 'mysql';
 import 'dotenv/config';
 
-// Create a connection to the database
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -19,4 +18,3 @@ connection.connect(err => {
 
 export default connection;
 
-// Not being used, because using sqlite.

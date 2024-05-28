@@ -35,7 +35,7 @@ app.use(session({
 }));
 
 const authRateLimiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10min
+    windowMs: 10 * 60 * 1000, 
     limit: 10,
     message: "Too many attempts, please try again later",
     standardHeaders: true,
@@ -44,7 +44,7 @@ const authRateLimiter = rateLimit({
 app.use("/auth", authRateLimiter); 
 
 const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10min
+    windowMs: 10 * 60 * 1000, 
     limit: 30, 
     standardHeaders: true,
     legacyHeaders: false,
@@ -70,7 +70,6 @@ app.use("/api", mailRouter);
 import predictRouter from './routers/predictRouter.js'
 app.use(predictRouter);
 
-// Existing middleware and routes setup...
 
 io.on('connection', (socket) => {
   console.log('New client connected');
@@ -94,7 +93,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('skip', (room) => {
-    // Logic to handle skip for the specific room
   });
 });
 

@@ -9,7 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.get_logger().setLevel('ERROR')
 
 def load_model():
-    model = tf.keras.models.load_model('fruit_model.h5')  # Make sure the path is correct
+    model = tf.keras.models.load_model('fruit_model.h5')  
     return model
 
 def preprocess_image(frame):
@@ -37,7 +37,7 @@ def capture_and_predict():
         print("Cannot open camera")
         exit()
     
-    model = load_model()  # Load the model once, outside the loop
+    model = load_model() 
 
     while True:
         ret, frame = cap.read()
@@ -49,7 +49,7 @@ def capture_and_predict():
         cv2.putText(frame, f"Prediction: {prediction}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
         cv2.imshow('Camera Feed', frame)
 
-        if cv2.waitKey(1) == ord('q'):  # Press 'q' to quit the loop
+        if cv2.waitKey(1) == ord('q'):  
             break
 
     cap.release()

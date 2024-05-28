@@ -24,7 +24,7 @@
   }
 
   .message {
-    color: #ffffff; /* Darker color for the message text */
+    color: #ffffff; 
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
@@ -32,7 +32,7 @@
   .home-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4CAF50; /* Green background for a positive feel */
+    background-color: #4CAF50; 
     color: #fff;
     border: none;
     border-radius: 10px;

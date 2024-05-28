@@ -21,7 +21,7 @@
     }
     currentRoom = room;
     socket.emit('joinRoom', { room, username });
-    messages = []; // Clear messages when joining a new room
+    messages = []; 
   }
 
   function leaveRoom() {
@@ -137,8 +137,8 @@
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 200px; /* Fixed height */
-    overflow-y: auto; /* Enable vertical scrolling */
+    height: 200px; 
+    overflow-y: auto; 
   }
 
   .messages {

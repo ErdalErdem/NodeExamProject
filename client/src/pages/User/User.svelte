@@ -8,7 +8,7 @@
   let username = $user.user.name;
   let quote = '';
   let greeting = '';
-  let profilePicture = 'client/public/images/profile-picture.png'; // Static profile picture URL
+  let profilePicture = 'client/public/images/profile-picture.png'; 
 
   onMount(async () => {
     setGreeting();
@@ -27,7 +27,7 @@
   }
 
   async function fetchQuote() {
-    // Fetch a random happy quote (dummy data for demonstration)
+ 
     const quotes = [
       "Happiness is not by chance, but by choice.",
       "Be happy for this moment. This moment is your life.",
@@ -71,7 +71,6 @@
   }
 
   function editProfilePicture() {
-    // Function to handle profile picture editing
     alert('Edit profile picture feature is not yet implemented.');
   }
 </script>
