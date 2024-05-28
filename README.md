@@ -1,7 +1,7 @@
 
 # NodeExamProject
 
-<img src="client/public/Justchattingbanner.png" alt="Description of image" width="200" height="200">
+<img src="client/public/Justchattingbanner.png" alt="Description of image" width="600" height="200">
 
 
 ## Overview
