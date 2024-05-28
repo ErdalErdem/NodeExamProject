@@ -11,10 +11,49 @@ NodeExamProject is a web application that consists of a client and server. The c
 - Fruit Prediction using a Machine Learning Model
 
 ## Project Structure
-- **client/**: Contains the front-end code.
-- **server/**: Contains the back-end code.
-- **public/**: Contains static assets like images and icons.
-- **database/**: Contains database connection and setup files.
+NodeExamProject-master/
+├── .env.sample
+├── .gitignore
+├── LICENSE
+├── README.md
+├── request.rest
+├── client/
+│   ├── .gitignore
+│   ├── README.md
+│   ├── index.html
+│   ├── jsconfig.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── svelte.config.js
+│   ├── vite.config.js
+│   ├── public/
+│   │   ├── Justchattingbanner.png
+│   │   ├── facebook-icon.png
+│   │   ├── github-icon.png
+│   │   ├── icon.png
+│   │   ├── linkedin-icon.png
+│   │   ├── twitter-icon.png
+│   ├── src/
+│   │   ├── App.svelte
+│   │   ├── app.css
+│   │   ├── main.js
+│   │   ├── vite-env.d.ts
+│   │   ├── components/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── stores/
+│   │   ├── util/
+├── server/
+│   ├── app.js
+│   ├── database.db
+│   ├── fruit_model.h5
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── predict.py
+│   ├── train_model.py
+│   ├── database/
+│   ├── routers/
+│   ├── util/
 
 ## Installation
 
