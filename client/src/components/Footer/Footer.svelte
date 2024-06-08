@@ -10,7 +10,7 @@
     <div class="footer-content">
       <p>© 2024 JustChatting + Fruit?</p>
       <div class="social-links">
-        <a href="https://github.com" target="_blank">
+        <a href="https://github.com/ErdalErdem?tab=repositories" target="_blank">
           <img src="/public/github-icon.png" alt="Github">
         </a>
         <a href="https://twitter.com" target="_blank">
@@ -19,7 +19,7 @@
         <a href="https://facebook.com" target="_blank">
           <img src="/public/facebook-icon.png" alt="Facebook">
         </a>
-        <a href="https://linkedin.com" target="_blank">
+        <a href="https://www.linkedin.com/feed/" target="_blank">
           <img src="/public/linkedin-icon.png" alt="LinkedIn">
         </a>
       </div>
