@@ -7,7 +7,6 @@
     let welcomeMessage = '';
     let randomQuote = '';
     
-    // Subscribe to the user store
     $: userProfile = $user;
   
     const quotes = [
