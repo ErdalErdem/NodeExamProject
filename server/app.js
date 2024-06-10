@@ -92,8 +92,6 @@ io.on('connection', (socket) => {
     io.to(room).emit('chatMessage', { user, msg });
   });
 
-  socket.on('skip', (room) => {
-  });
 });
 
 
